@@ -7,3 +7,13 @@ const connection = new Sequelize({
     password : process.env.DATABASE_PASSWORD, 
     database : process.env.DATABASE_NAME
 });
+
+try{ 
+    connection
+    .authenticate()
+    .then(()=> console.log("Conectado a la base de dato"))
+}catch(err){
+    console.error(err)
+}
+
+export {connection,};
