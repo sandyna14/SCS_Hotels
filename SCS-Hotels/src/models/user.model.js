@@ -1,6 +1,6 @@
 import { connection, } from "../connection.js";
 import {DataTypes} from 'sequelize'
-const user = connection.define(
+const User = connection.define(
     'users',
     {
       id: {
@@ -17,12 +17,14 @@ const user = connection.define(
       name:{
         type:DataTypes.STRING
       }
+
     },
     {
         timestamps:true,
     }
 )
-user.sync({
-    force:true
+User.sync({
+    //force:true
 });
-export {user,}
+
+export {User,}
