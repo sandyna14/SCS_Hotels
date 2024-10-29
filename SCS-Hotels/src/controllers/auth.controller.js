@@ -6,13 +6,33 @@ import {
     res.send('POST LOGIN')
   }
   
-  export function signup(req, res){
+  export async function signup(req, res){
     const {
       email,
       password,
       givenName,
       lastName,
     } = req.body;
+
+    const user = await User.findOne({
+      where: {
+        email,
+       }
+    });
+    if(user){
+      return res
+      .status(400)
+      .json({
+        success:false,
+      message:"El usuario ya existe"
+    })
+    }
+    const created = await User.create({
+      email,
+      password,
+      givenName,
+      lastName
+    });  
   
   const requiredFilsd =['email','password','givenName','lastName']; 
   for(const field of requiredFilsd){
