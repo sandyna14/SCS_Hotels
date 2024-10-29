@@ -14,13 +14,16 @@ import {
       lastName,
     } = req.body;
   
-    if(!email || !password || givenName || lastName){
+  const requiredFilsd =['email','password','givenName','lastName']; 
+  for(const field of requiredFilsd){
+    if(!req.body[field]){
       return res
       .status(401)
       .json({
         success:false,
-        message:"Faltan Campos Requeridos"
-      })
-    }
+      message:"Faltan Campos Requeridos" 
+    })
+  }
+}
       res.send('POST SEGNUP')   
   }
