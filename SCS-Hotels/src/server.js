@@ -11,9 +11,10 @@ import {User, } from './database/models/user.model.js'
 
 async function main(){ 
     const port = +process.env.APP_PORT ?? 4000; 
-    const app = express(); 
-
+    const app = express();
+    
     app.use(morgan('dev'))
+    app.use(express.json())
     const httpServer = http.createServer(app);
 
     app.get('/',(req,res) =>{

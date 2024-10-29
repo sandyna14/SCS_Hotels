@@ -15,7 +15,12 @@ import {
     } = req.body;
   
     if(!email || !password || givenName || lastName){
-      return res.status()
+      return res
+      .status(401)
+      .json({
+        success:false,
+        message:"Faltan Campos Requeridos"
+      })
     }
       res.send('POST SEGNUP')   
   }
